@@ -1,6 +1,6 @@
-;;;;; 
+;;;;;
 ;; .emacs
-;; Packages: comment-dwim2, base16 (themes) 
+;; Packages: comment-dwim2, base16 (themes)
 ;;;;;
 
 
@@ -11,6 +11,23 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
+
+
+;; Install packages if necessary
+(setq package-list '(comment-dwim-2
+		     base16-theme
+		     web-mode
+		     markdown-mode
+		     yaml-mode))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+
 
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
@@ -31,6 +48,9 @@
 
 ;; Skinny borders
 (fringe-mode 0)
+
+;; Display column numbers
+(setq column-number-mode 1)
 
 ;; Packages
 
@@ -65,7 +85,7 @@
         ("j" "Journal" entry (file+datetree "~/Documents/org/journal.org")
 	 "* %?\nEntered on %U\n  %i\n  %a")
 	("f" "Finance" table-line (file "~/Documents/test/finance.org"))))
-	 
+
 
 
 ;;;; Org mode
@@ -92,5 +112,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-
