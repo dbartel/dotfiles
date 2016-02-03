@@ -18,7 +18,9 @@
 		     base16-theme
 		     web-mode
 		     markdown-mode
-		     yaml-mode))
+		     yaml-mode
+		     rainbow-identifiers
+		     powerline))
 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -51,6 +53,14 @@
 
 ;; Display column numbers
 (setq column-number-mode 1)
+
+;; auto-indent new line
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+
+;; "Smart" window switch. shift+arrow keys
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;; Packages
 
@@ -95,6 +105,14 @@
 (global-set-key (kbd "M-;") 'comment-dwim-2) ;
 ;;;; comment-dwim-2
 
+;;;; powerline
+(require 'powerline)
+(powerline-default-theme)
+;;;; powerline
+
+;;;; rainbow identifiers
+(add-hook 'prog-mode-hook 'rainbow-identifiers-mode)
+;;;; rainbow identifiers
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
